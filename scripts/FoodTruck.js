@@ -1,10 +1,10 @@
 import { Entrees } from "./Entrees.js";
 import { Veggies } from "./Vegetables.js";
 import { Sides } from "./SideDishes.js";
-//import { Sales } from "./Sales.js";
+import { Sales } from "./Sales.js";
 
 export const FoodTruck = async () => {
-  //const salesHTML = Sales();
+  const salesHTML = await Sales();
   const entreesHTML = await Entrees();
   const veggiesHTML = await Veggies();
   const sidesHTML = await Sides();
@@ -29,6 +29,7 @@ export const FoodTruck = async () => {
 
         <article class="customerOrders">
             <h2>Monthly Sales</h2>
+            ${salesHTML}
             
         </article>
 

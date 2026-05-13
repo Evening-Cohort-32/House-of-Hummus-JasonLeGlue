@@ -28,4 +28,7 @@ export const createOrder = async () => {
   ) {
     const response = await fetch("http://localhost:8088/orders", postOptions);
   }
+
+  const newOrderEvent = new CustomEvent("newOrderCreated");
+  document.dispatchEvent(newOrderEvent);
 };
