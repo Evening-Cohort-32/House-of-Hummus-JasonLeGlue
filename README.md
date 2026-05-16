@@ -24,11 +24,11 @@
 
 1. When the user selects an item in any of the three columns, the choice should be stored as transient state.
 1. When a user makes a choice for all three kinds of food, and then clicks the "Purchase Combo" button, a new sales object should be...
-    1. Stored as permanent state in your local API.
-    1. Represented as HTML below the **Monthly Sales** header in the following format **_exactly_**. Your output will not have zeroes, but the actual amount.
-        ```html
-        Receipt #1 = $00.00
-        ```
+   1. Stored as permanent state in your local API.
+   1. Represented as HTML below the **Monthly Sales** header in the following format **_exactly_**. Your output will not have zeroes, but the actual amount.
+      ```html
+      Receipt #1 = $00.00
+      ```
    1. The user's choices should be cleared from transient state once the purchase is made.
 
 ## Design
@@ -56,10 +56,10 @@ sequenceDiagram
 > 🧨 Before you click the "Assessment Complete" button on the Learning Platform, add your answers below for each question and make a commit. It is your option to request a face-to-face meeting with a coach for a vocabulary review.
 
 1. Should transient state be represented in a database diagram? Why, or why not?
-   > Your answer here
-2. In the **FoodTruck** module, you are **await**ing the invocataion of all of the component functions _(e.g. sales, veggie options, etc.)_. Why must you use the `await` keyword there? Explain what happens if you remove it.
-   > Your answer here
+   > No, transient state shouldn't be represented in a database diagram because it is intentionally kept separate from the database. In our case it is indirectly represented by "orders" in our database. "Orders" is where our transient state is sent once submitted, and shares the same keys as our transient state with the exception of id, which is added automatically when transient state is submitted to orders.
+2. In the **FoodTruck** module, you are **await**ing the invocation of all of the component functions _(e.g. sales, veggie options, etc.)_. Why must you use the `await` keyword there? Explain what happens if you remove it.
+   > We use the 'await' keyword because we are interfacing with the json database in our functions, making them asynchronous. If we were to omit the 'await' keyword, we would see "[object Promise]" displayed instead of our intended output.
 3. When the user is making choices by selecting radio buttons, explain how that data is retained so that the **Purchase Combo** button works correctly.
-   > Your answer here
+   > After each choice, the page is rendered again. The reason the user's choice is retained is because conditionals inside Entries(), Veggies(), and Sides() that leave the radio button checked if the value of their '<input>' tag matches the value of the transient state.
 4. You used the `map()` array method in the self assessment _(at least, you should have since it is a learning objective)_. Explain why that function is helpful as a replacement for a `for..of` loop.
-   > Your answer here
+   > I find 'Map()' helpful mainly for the fact that it is effective as a replacement for the 'for..of' loop, and can save a line or two of code in some use cases. In practice there doesn't seem to be much of a difference when choosing between the two, other than the fact that 'map()' naturally returns a separate array.
